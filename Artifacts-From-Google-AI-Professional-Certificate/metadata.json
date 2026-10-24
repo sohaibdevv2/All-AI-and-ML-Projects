@@ -1,0 +1,6 @@
+{
+  "name": "AI Certificate Artifacts Hub",
+  "description": "An interactive showcase and workspace for the 20 core artifacts, templates, worksheets, and techniques from the Google AI Professional Certificate track.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

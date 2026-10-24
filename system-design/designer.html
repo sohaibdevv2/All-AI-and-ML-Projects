@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designer — SystemGraph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/designer.css" />
+</head>
+<body>
+
+<!-- ===== TOOLBAR ===== -->
+<nav id="toolbar">
+  <a href="index.html" class="toolbar-logo" id="btnHome" title="Back to Home">
+    <div class="toolbar-logo-icon"><i class="fa fa-diagram-project"></i></div>
+    <span>System<b>Graph</b></span>
+  </a>
+
+  <!-- File actions -->
+  <button class="toolbar-btn" id="btnTemplates" title="Templates (T)">
+    <i class="fa fa-layer-group"></i> Templates
+  </button>
+  <button class="toolbar-btn" id="btnImportJson" title="Import JSON">
+    <i class="fa fa-upload"></i> Import
+  </button>
+  <input type="file" id="importInput" accept=".json" style="display:none" />
+
+  <div class="toolbar-sep"></div>
+
+  <!-- Edit actions -->
+  <button class="toolbar-btn" id="btnUndo" title="Undo (Ctrl+Z)" style="opacity:0.4">
+    <i class="fa fa-rotate-left"></i>
+  </button>
+  <button class="toolbar-btn" id="btnRedo" title="Redo (Ctrl+Y)" style="opacity:0.4">
+    <i class="fa fa-rotate-right"></i>
+  </button>
+  <button class="toolbar-btn danger" id="btnClear" title="Clear Canvas">
+    <i class="fa fa-trash-can"></i>
+  </button>
+
+  <div class="toolbar-sep"></div>
+
+  <!-- Mode selector -->
+  <div class="toolbar-mode-group">
+    <button class="mode-btn active" data-mode="select" title="Select (V)">
+      <i class="fa fa-arrow-pointer"></i> Select
+    </button>
+    <button class="mode-btn" data-mode="connect" title="Connect (C)">
+      <i class="fa fa-link"></i> Connect
+    </button>
+  </div>
+
+  <!-- Center filename -->
+  <div class="toolbar-filename">
+    <input id="designTitle" type="text" value="Untitled Design" spellcheck="false" />
+  </div>
+
+  <!-- Fit & Export -->
+  <button class="toolbar-btn" id="btnFit" title="Fit canvas (F)">
+    <i class="fa fa-expand"></i> Fit
+  </button>
+  <button class="toolbar-btn" id="btnExportPng" title="Export PNG (Ctrl+E)">
+    <i class="fa fa-image"></i> PNG
+  </button>
+  <button class="toolbar-btn" id="btnExportJson" title="Export JSON">
+    <i class="fa fa-code"></i> JSON
+  </button>
+
+  <button class="toolbar-btn" id="btnToggleProps" title="Toggle Properties">
+    <i class="fa fa-sliders"></i>
+  </button>
+</nav>
+
+<!-- ===== APP BODY ===== -->
+<div id="app-body">
+
+  <!-- LEFT SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-search">
+      <div class="sidebar-search-wrap">
+        <i class="fa fa-search sidebar-search-icon"></i>
+        <input id="sidebarSearch" class="sidebar-search-input" type="text"
+               placeholder="Search components…" />
+      </div>
+    </div>
+    <div id="sidebarScroll" class="sidebar-scroll"></div>
+  </aside>
+
+  <!-- CANVAS -->
+  <main id="canvas-area">
+    <div id="canvas-bg-grid"></div>
+    <div id="cy"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state">
+      <div class="empty-icon">🏗️</div>
+      <div class="empty-title">Your canvas is empty</div>
+      <div class="empty-sub">Click any component in the sidebar to add it, or load a template to get started</div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <!-- Zoom controls -->
+    <div class="canvas-controls">
+      <button class="canvas-ctrl-btn" id="ctrlZoomIn"  title="Zoom In">
+        <i class="fa fa-plus"></i>
+      </button>
+      <div class="zoom-label" id="zoomLabel">100%</div>
+      <button class="canvas-ctrl-btn" id="ctrlZoomOut" title="Zoom Out">
+        <i class="fa fa-minus"></i>
+      </button>
+      <button class="canvas-ctrl-btn" id="ctrlFit"     title="Fit All">
+        <i class="fa fa-expand"></i>
+      </button>
+      <button class="canvas-ctrl-btn" id="ctrlCenter"  title="Center">
+        <i class="fa fa-crosshairs"></i>
+      </button>
+    </div>
+  </main>
+
+  <!-- PROPERTIES PANEL -->
+  <aside id="props-panel">
+    <div class="props-header">
+      <h3>Properties</h3>
+    </div>
+    <div id="propsContent" class="props-scroll">
+      <div class="props-empty">
+        <div class="props-empty-icon">🎯</div>
+        <div>Select a node or edge to view its properties</div>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- end app-body -->
+
+<!-- TEMPLATES MODAL -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Choose a Template</h2>
+      <button class="modal-close" id="btnModalClose"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div id="templatesGrid" class="templates-modal-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- KEYBOARD SHORTCUTS HINT (bottom-left) -->
+<div style="position:fixed; bottom:12px; left:256px; font-size:0.7rem; color:var(--text-muted); pointer-events:none; z-index:10; line-height:1.8;">
+  <span style="margin-right:12px"><kbd style="padding:2px 6px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; font-family:inherit">V</kbd> Select</span>
+  <span style="margin-right:12px"><kbd style="padding:2px 6px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; font-family:inherit">C</kbd> Connect</span>
+  <span style="margin-right:12px"><kbd style="padding:2px 6px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; font-family:inherit">Del</kbd> Delete</span>
+  <span style="margin-right:12px"><kbd style="padding:2px 6px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; font-family:inherit">F</kbd> Fit</span>
+  <span><kbd style="padding:2px 6px; background:var(--bg-card); border:1px solid var(--border); border-radius:4px; font-family:inherit">Ctrl+Z</kbd> Undo</span>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+<script src="js/components.js"></script>
+<script src="js/designer.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # ── 1. Run full test suite on all platforms ──────────────────────────────────
+  test:
+    name: Test · ${{ matrix.os }} · Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: pytest --tb=short -q
+
+  # ── 2. Build, check, publish, release — all in one job (no artifact actions) ─
+  publish:
+    name: Build & Publish to PyPI
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed for GitHub Release
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install build tools
+        run: pip install hatch twine
+
+      - name: Build wheel and sdist
+        run: hatch build
+
+      - name: Verify packages
+        run: twine check dist/*
+
+      - name: Show built files
+        run: ls -la dist/
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            dist/* \
+            --title "puredatalib ${{ github.ref_name }}" \
+            --notes "## Install
+
+          \`\`\`bash
+          pip install puredatalib==${{ github.ref_name }}
+          \`\`\`
+
+          ## Links
+          - [PyPI](https://pypi.org/project/puredatalib/)
+          - [Changelog](https://github.com/sohaibdevv/puredata.py/blob/main/CHANGELOG.md)
+          - [Website](https://sohaibdevv.github.io/puredata)"

@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ── Primary SEO ───────────────────────────────────────────── -->
+  <title>datamend — Python Data Quality Library | Repair, Drift Detection & Failure Tracing</title>
+  <meta name="description" content="datamend is the unified Python library for automatic data repair, statistical contract validation, drift detection (PSI/KS/JSD), and ML failure tracing. pip install datamend. Free & open source." />
+  <meta name="keywords" content="datamend, data quality python, data repair library, drift detection python, data validation, pandas data cleaning, machine learning data quality, PSI drift, KS test python, data contract, MLops data quality, autorepair pandas, feature drift detection, model failure tracing, python data science library" />
+  <meta name="author" content="sohaib" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://sohaibdevv.github.io/datamend-site/" />
+
+  <!-- ── Open Graph (Facebook, LinkedIn) ──────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="datamend" />
+  <meta property="og:title" content="datamend — Unified Data Quality Library for Python ML" />
+  <meta property="og:description" content="Fix dirty data automatically. Enforce data contracts. Detect distribution drift. Trace model failures to root columns. One Python library, four pillars, zero config." />
+  <meta property="og:url" content="https://sohaibdevv.github.io/datamend-site/" />
+  <meta property="og:image" content="https://sohaibdevv.github.io/datamend-site/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="datamend — pip install datamend — The unified data quality library" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ── Twitter / X Card ─────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="datamend — Python Data Quality Library" />
+  <meta name="twitter:description" content="Auto-repair dirty data, enforce contracts, detect drift, trace model failures. pip install datamend — free & open source." />
+  <meta name="twitter:image" content="https://sohaibdevv.github.io/datamend-site/og-image.png" />
+  <meta name="twitter:image:alt" content="datamend data quality library" />
+  <meta name="twitter:creator" content="@sohaibdevv" />
+  <meta name="twitter:site" content="@sohaibdevv" />
+
+  <!-- ── JSON-LD Structured Data ──────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "datamend",
+    "description": "The unified Python library for automatic data repair, statistical contract validation, distribution drift detection, and ML model failure tracing.",
+    "url": "https://sohaibdevv.github.io/datamend-site/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "programmingLanguage": "Python",
+    "author": {
+      "@type": "Person",
+      "name": "sohaib",
+      "url": "https://github.com/sohaibdevv"
+    },
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/sohaibdevv/datamend.py",
+    "downloadUrl": "https://pypi.org/project/datamend/",
+    "softwareVersion": "0.1.0",
+    "releaseNotes": "https://github.com/sohaibdevv/datamend.py/blob/main/CHANGELOG.md",
+    "keywords": "data quality, data repair, drift detection, data validation, machine learning, MLops, pandas, python",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "datamend",
+    "url": "https://sohaibdevv.github.io/datamend-site/",
+    "description": "Official website for the datamend Python data quality library",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://github.com/sohaibdevv/datamend.py/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- ── Favicon ───────────────────────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
+
+  <!-- ── Fonts ─────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ────────────────────────────────────────────────────── -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">
+        <span class="logo-icon">⬡</span>
+        datamend
+      </a>
+      <ul class="nav-links">
+        <li><a href="#pillars">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#docs">Documentation</a></li>
+        <li><a href="#benchmark">Benchmark</a></li>
+        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="https://github.com/sohaibdevv/datamend.py" target="_blank">GitHub</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" href="https://pypi.org/project/datamend/" target="_blank">
+        pip install datamend
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#pillars">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#docs">Documentation</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#integrations">Integrations</a>
+      <a href="https://github.com/sohaibdevv/datamend.py" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ───────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-blob blob-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        v0.1.0 is live on PyPI · 113 tests passing
+      </div>
+      <h1 class="hero-title">
+        Stop babysitting<br/>
+        <span class="gradient-text">dirty data.</span>
+      </h1>
+      <p class="hero-sub">
+        datamend is the production-grade Python library that automatically repairs corrupt data,
+        enforces statistical contracts, detects distribution drift, and traces model failures —
+        in one unified API, zero configuration.
+      </p>
+      <div class="hero-cta-row">
+        <a href="https://pypi.org/project/datamend/" target="_blank" class="btn btn-primary btn-lg">
+          Get Started — it's free
+        </a>
+        <a href="#docs" class="btn btn-outline btn-lg">
+          Read the Docs
+        </a>
+        <a href="https://github.com/sohaibdevv/datamend.py" target="_blank" class="btn btn-ghost btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div class="hero-install">
+        <div class="install-box">
+          <span class="install-prompt">$</span>
+          <span class="install-cmd" id="installCmd">pip install datamend</span>
+          <button class="copy-btn" id="copyBtn" aria-label="Copy command">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">113</span>
+          <span class="stat-label">Tests Passing</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">94%</span>
+          <span class="stat-label">Coverage</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Pillars</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Detectors</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">MIT</span>
+          <span class="stat-label">License</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUSTED BY STACK ───────────────────────────────────────── -->
+  <section class="stack-bar">
+    <div class="container">
+      <p class="stack-label">Works seamlessly with</p>
+      <div class="stack-logos">
+        <span class="stack-item">pandas</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">scikit-learn</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">XGBoost</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">LightGBM</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">PyTorch</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">MLflow</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Weights &amp; Biases</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">DVC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEMO CODE ──────────────────────────────────────────────── -->
+  <section class="demo-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Quick Start</span>
+        <h2>From messy data to clean insights<br/>in five lines</h2>
+        <p>datamend's top-level API is designed to be learned in minutes and relied on for years.</p>
+      </div>
+      <div class="demo-card">
+        <div class="demo-header">
+          <div class="demo-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="demo-title-bar">quickstart.py</span>
+        </div>
+        <pre class="demo-code"><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> <span class="cls">datamend</span>
+
+df = pd.read_csv(<span class="str">"production_data.csv"</span>)   <span class="comment"># 50k rows, real mess</span>
+
+<span class="comment"># ── Pillar 1: Repair — heals nulls, outliers, duplicates, encoding ────</span>
+repaired, report = <span class="cls">datamend</span>.repair(df)
+<span class="fn">print</span>(report.mend_score_after)      <span class="comment"># 96.8/100  ✓</span>
+<span class="fn">print</span>(report.total_issues_found)    <span class="comment"># 247</span>
+
+<span class="comment"># ── Pillar 2: Contract — auto-learned schema validation ───────────────</span>
+contract = <span class="cls">datamend</span>.contract(train_df)
+violations = <span class="cls">datamend</span>.validate(repaired, contract)
+<span class="fn">print</span>(violations.passed)           <span class="comment"># True  ✓</span>
+
+<span class="comment"># ── Pillar 3: Drift — four statistical tests in one call ──────────────</span>
+drift = <span class="cls">datamend</span>.drift(train_df, repaired)
+<span class="fn">print</span>(drift.columns_drifted)       <span class="comment"># ['income']  ⚠</span>
+
+<span class="comment"># ── Pillar 4: Trace — which rows and columns caused failures ──────────</span>
+trace = <span class="cls">datamend</span>.trace(model, repaired, predictions)
+<span class="fn">print</span>(trace.suspicious_rows[:3])   <span class="comment"># [1042, 887, 3310]  ⚠</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOUR PILLARS ───────────────────────────────────────────── -->
+  <section class="pillars" id="pillars">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Four Pillars</span>
+        <h2>Every data quality problem.<br/>One library.</h2>
+        <p>Each pillar is a standalone powerhouse. Together, they give you complete visibility and control over your data — from raw ingestion all the way to model output attribution.</p>
+      </div>
+      <div class="pillars-grid">
+
+        <div class="pillar-card" data-pillar="1">
+          <div class="pillar-num-badge">Pillar 01</div>
+          <div class="pillar-icon-wrap" style="--accent:#3b82f6">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <h3>AutoRepair</h3>
+          <p class="pillar-desc">An 8-phase engine that detects and heals nulls, outliers, type mismatches, duplicates, encoding corruption, and whitespace — automatically, zero config required.</p>
+          <ul class="pillar-features">
+            <li>Modified Z-score outlier detection (MAD-based, robust to skew)</li>
+            <li>Skewness-aware null imputation (mean vs median auto-selection)</li>
+            <li>Near-duplicate detection via Jaccard token similarity ≥ 0.85</li>
+            <li>Unicode NFKD category normalisation for messy strings</li>
+            <li>Mojibake (latin-1 → utf-8) encoding corruption repair</li>
+            <li>Hidden character and zero-width space removal</li>
+            <li>Unit mismatch flagging (CV + IQR ratio heuristics)</li>
+          </ul>
+          <div class="pillar-code-wrap">
+            <span class="pillar-code-label">One-liner API</span>
+            <div class="pillar-code">
+              <code>repaired, report = datamend.repair(df)</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="pillar-card" data-pillar="2">
+          <div class="pillar-num-badge">Pillar 02</div>
+          <div class="pillar-icon-wrap" style="--accent:#8b5cf6">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <h3>DataContract</h3>
+          <p class="pillar-desc">Automatically learns the full statistical fingerprint of your training data and validates every future batch against it — without you writing a single expectation manually.</p>
+          <ul class="pillar-features">
+            <li>Auto-learns dtype, nullable, null_rate, min/max/mean/std</li>
+            <li>Percentile fingerprint (p5/p25/p50/p75/p95)</li>
+            <li>KS-test distribution validation across numeric columns</li>
+            <li>Cardinality and category membership checks</li>
+            <li>JSON persistence for reproducible, version-controlled contracts</li>
+            <li>Raise-on-failure mode for strict gate pipelines</li>
+            <li>Severity levels: critical / high / medium / low per violation</li>
+          </ul>
+          <div class="pillar-code-wrap">
+            <span class="pillar-code-label">Two-liner API</span>
+            <div class="pillar-code">
+              <code>contract = datamend.contract(train_df)<br/>report = datamend.validate(prod_df, contract)</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="pillar-card" data-pillar="3">
+          <div class="pillar-num-badge">Pillar 03</div>
+          <div class="pillar-icon-wrap" style="--accent:#06b6d4">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3>DriftRadar</h3>
+          <p class="pillar-desc">Runs four independent statistical tests on every feature column and combines them into one drift verdict with severity scoring — so you know before your model performance drops.</p>
+          <ul class="pillar-features">
+            <li>PSI — Population Stability Index with auto percentile binning</li>
+            <li>KS test — Kolmogorov-Smirnov for continuous feature drift</li>
+            <li>Chi-square test — categorical distribution shift detection</li>
+            <li>JSD — Jensen-Shannon Divergence across all column types</li>
+            <li>Weighted combined drift score (0–100) per column</li>
+            <li>Severity: none / low / medium / high / critical</li>
+            <li>Per-column breakdown + overall dataset drift MendScore</li>
+          </ul>
+          <div class="pillar-code-wrap">
+            <span class="pillar-code-label">One-liner API</span>
+            <div class="pillar-code">
+              <code>report = datamend.drift(train_df, prod_df)</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="pillar-card" data-pillar="4">
+          <div class="pillar-num-badge">Pillar 04</div>
+          <div class="pillar-icon-wrap" style="--accent:#10b981">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+          <h3>FailureTrace</h3>
+          <p class="pillar-desc">Combines data-quality signals, model confidence estimates, and surrogate importances to surface the exact rows and columns causing your predictions to fail.</p>
+          <ul class="pillar-features">
+            <li>Row-level suspicion score — composite of DQ + model signals</li>
+            <li>Native importance extraction for sklearn / XGBoost / LightGBM</li>
+            <li>Surrogate DecisionTreeRegressor for black-box model attribution</li>
+            <li>Model confidence via predict_proba or normalised residuals</li>
+            <li>Column attribution: model_importance × data_quality_contribution</li>
+            <li>Top-K suspicious rows with per-row explanation strings</li>
+            <li>Works with classifiers, regressors, and neural networks</li>
+          </ul>
+          <div class="pillar-code-wrap">
+            <span class="pillar-code-label">One-liner API</span>
+            <div class="pillar-code">
+              <code>report = datamend.trace(model, df, preds)</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">How It Works</span>
+        <h2>One pipeline.<br/>Zero compromises.</h2>
+        <p>MendPipeline chains all four pillars in a stateful object — fit once on training data, run on every production batch in milliseconds.</p>
+      </div>
+      <div class="pipeline-visual">
+        <div class="pipeline-step">
+          <div class="step-circle step-circle-gray"><span>📥</span></div>
+          <div class="step-content">
+            <h4>Raw Data In</h4>
+            <p>Any pandas DataFrame — CSV, Parquet, JSON. Dirty data welcome.</p>
+          </div>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="step-circle" style="background:var(--blue-500);box-shadow:0 0 0 4px var(--blue-100)"><span>🔧</span></div>
+          <div class="step-content">
+            <h4>AutoRepair</h4>
+            <p>8-phase repair engine heals every corruption type. MendScore computed.</p>
+          </div>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="step-circle" style="background:var(--purple-500);box-shadow:0 0 0 4px #ede9fe"><span>📋</span></div>
+          <div class="step-content">
+            <h4>DataContract</h4>
+            <p>Validates repaired data against learned schema. Violations surfaced.</p>
+          </div>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="step-circle" style="background:var(--cyan-500);box-shadow:0 0 0 4px #cffafe"><span>📡</span></div>
+          <div class="step-content">
+            <h4>DriftRadar</h4>
+            <p>PSI + KS + chi² + JSD compared against training distribution.</p>
+          </div>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="step-circle" style="background:var(--green-500);box-shadow:0 0 0 4px #d1fae5"><span>🔬</span></div>
+          <div class="step-content">
+            <h4>FailureTrace</h4>
+            <p>Suspicious rows and columns attributed. Root cause identified.</p>
+          </div>
+        </div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">
+          <div class="step-circle step-circle-gradient"><span>✓</span></div>
+          <div class="step-content">
+            <h4>PipelineResult</h4>
+            <p>Clean DataFrame + all reports + overall MendScore. Export to JSON or HTML.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-example">
+        <div class="code-tabs">
+          <button class="tab active" data-tab="pipeline">MendPipeline</button>
+          <button class="tab" data-tab="individual">Individual APIs</button>
+          <button class="tab" data-tab="cli">CLI</button>
+          <button class="tab" data-tab="large">Large Datasets</button>
+        </div>
+        <div class="tab-content active" id="tab-pipeline">
+          <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> MendPipeline
+
+pipeline = MendPipeline(
+    repair_strategy=<span class="str">"auto"</span>,    <span class="comment"># auto-selects imputation per column</span>
+    null_threshold=<span class="num">0.05</span>,        <span class="comment"># max 5% nulls allowed by contract</span>
+    drift_alpha=<span class="num">0.05</span>,            <span class="comment"># significance level for KS / chi2</span>
+    psi_buckets=<span class="num">10</span>,              <span class="comment"># bins for PSI computation</span>
+    top_k_trace=<span class="num">10</span>,              <span class="comment"># top suspicious rows to surface</span>
+    verbose=<span class="kw">True</span>,
+)
+
+<span class="comment"># ── Fit once on clean training data ──────────────────────────────</span>
+pipeline.fit(train_df)
+
+<span class="comment"># ── Run on every production batch ────────────────────────────────</span>
+result = pipeline.transform(prod_df, model=model, predictions=preds)
+
+<span class="fn">print</span>(result.overall_mend_score)          <span class="comment"># 91.4</span>
+<span class="fn">print</span>(result.repair_report.mend_score_after)  <span class="comment"># 96.8</span>
+
+result.repaired_df.to_parquet(<span class="str">"clean_batch.parquet"</span>)
+result.to_json()    <span class="comment"># full JSON-serializable report</span></code></pre>
+        </div>
+        <div class="tab-content" id="tab-individual">
+          <pre><code><span class="kw">import</span> datamend
+
+<span class="comment"># Each pillar works fully standalone</span>
+
+<span class="comment"># Repair with explicit strategy</span>
+repaired, report = datamend.repair(df, strategy=<span class="str">"median"</span>, verbose=<span class="kw">True</span>)
+
+<span class="comment"># Fit and save a versioned contract</span>
+contract = datamend.contract(train_df)
+contract.save(<span class="str">"contracts/v1.json"</span>)   <span class="comment"># commit this to git!</span>
+
+<span class="comment"># Load and strictly enforce</span>
+contract = datamend.DataContract.load(<span class="str">"contracts/v1.json"</span>)
+report = datamend.validate(prod_df, contract, raise_on_failure=<span class="kw">True</span>)
+
+<span class="comment"># Drift on specific columns only</span>
+drift = datamend.drift(train_df, prod_df, columns=[<span class="str">"age"</span>, <span class="str">"income"</span>])
+
+<span class="comment"># Trace with ground truth labels</span>
+trace = datamend.trace(model, prod_df, preds, ground_truth=y_true)</code></pre>
+        </div>
+        <div class="tab-content" id="tab-cli">
+          <pre><code><span class="comment"># Full CLI — supports CSV, Parquet, JSON, Excel</span>
+
+<span class="comment"># Repair a dirty file and save output</span>
+datamend repair data.csv -o clean.csv --strategy median --verbose
+
+<span class="comment"># Fit a contract from training data</span>
+datamend contract train.csv -o contracts/v1.json
+
+<span class="comment"># Validate production data against saved contract</span>
+datamend validate prod.csv --contract contracts/v1.json
+
+<span class="comment"># Detect drift between two datasets</span>
+datamend drift train.csv prod.csv --alpha 0.01 --columns age income score
+
+<span class="comment"># Get a quick MendScore without running full repair</span>
+datamend score data.csv
+
+<span class="comment"># Generate full HTML dashboard and open in browser</span>
+datamend dashboard data.csv -o report.html --open
+
+<span class="comment"># List all registered plugins</span>
+datamend plugins list</code></pre>
+        </div>
+        <div class="tab-content" id="tab-large">
+          <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> AutoRepair
+
+<span class="comment"># Chunked mode — handles 50M+ rows without OOM</span>
+engine = AutoRepair(strategy=<span class="str">"median"</span>, fast_mode=<span class="kw">True</span>)
+repaired, report = engine.repair_chunked(
+    df,
+    chunk_size=<span class="num">1_000_000</span>,   <span class="comment"># 1M rows per chunk</span>
+)
+<span class="fn">print</span>(<span class="kw">f</span><span class="str">"Processed: {len(repaired):,} rows"</span>)
+
+<span class="comment"># Async concurrent processing of multiple batches</span>
+<span class="kw">import</span> asyncio
+
+<span class="kw">async def</span> process(batch):
+    loop = asyncio.get_event_loop()
+    <span class="kw">return await</span> loop.run_in_executor(<span class="kw">None</span>, datamend.repair, batch)
+
+results = <span class="kw">await</span> asyncio.gather(*[process(b) <span class="kw">for</span> b <span class="kw">in</span> batches])</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DOCUMENTATION ─────────────────────────────────────────── -->
+  <section class="docs-section" id="docs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Documentation</span>
+        <h2>Everything you need to<br/>ship with confidence</h2>
+        <p>Complete API reference, tutorials, algorithm explanations, and real-world patterns — all in one place.</p>
+      </div>
+
+      <div class="docs-grid">
+
+        <!-- AutoRepair docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#3b82f6">
+            <div class="doc-block-icon">🔧</div>
+            <div>
+              <h3>AutoRepair</h3>
+              <p>datamend.core.repair</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <h4>Class: AutoRepair</h4>
+            <div class="api-signature">
+              <code>AutoRepair(strategy="auto", fast_mode=False, plugins=[], verbose=True)</code>
+            </div>
+            <div class="param-table">
+              <div class="param-row">
+                <span class="param-name">strategy</span>
+                <span class="param-type">str</span>
+                <span class="param-desc"><code>"auto"</code> | <code>"mean"</code> | <code>"median"</code> | <code>"mode"</code>. <code>auto</code> selects based on column skewness (&gt;1.0 → median, else mean).</span>
+              </div>
+              <div class="param-row">
+                <span class="param-name">fast_mode</span>
+                <span class="param-type">bool</span>
+                <span class="param-desc">Enable sampling and faster heuristics for very large datasets (&gt;5M rows).</span>
+              </div>
+              <div class="param-row">
+                <span class="param-name">plugins</span>
+                <span class="param-type">list</span>
+                <span class="param-desc">List of <code>BaseRepairPlugin</code> instances to run after the 8-phase engine.</span>
+              </div>
+              <div class="param-row">
+                <span class="param-name">verbose</span>
+                <span class="param-type">bool</span>
+                <span class="param-desc">Print rich-formatted summary to stdout after repair.</span>
+              </div>
+            </div>
+            <h4>Methods</h4>
+            <div class="method-list">
+              <div class="method-item">
+                <code class="method-sig">fit_transform(df) → (DataFrame, RepairReport)</code>
+                <p>Run all 8 detection phases on df and return repaired DataFrame + full report.</p>
+              </div>
+              <div class="method-item">
+                <code class="method-sig">repair_chunked(df, chunk_size=500_000) → (DataFrame, RepairReport)</code>
+                <p>Process df in chunks. Merges per-chunk reports and concatenates repaired frames.</p>
+              </div>
+            </div>
+            <h4>RepairReport fields</h4>
+            <div class="fields-table">
+              <div class="field-row"><code>total_issues_found</code><span>int — total number of issues detected and fixed</span></div>
+              <div class="field-row"><code>total_rows_affected</code><span>int — number of rows changed in any phase</span></div>
+              <div class="field-row"><code>actions</code><span>List[RepairAction] — one entry per fix applied</span></div>
+              <div class="field-row"><code>columns_repaired</code><span>List[str] — columns that had at least one fix</span></div>
+              <div class="field-row"><code>mend_score_before</code><span>float — data health score before repair (0–100)</span></div>
+              <div class="field-row"><code>mend_score_after</code><span>float — data health score after repair (0–100)</span></div>
+              <div class="field-row"><code>duration_seconds</code><span>float — wall-clock time for the full repair pass</span></div>
+            </div>
+            <div class="doc-example">
+              <div class="doc-example-label">Example</div>
+              <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> AutoRepair
+
+engine = AutoRepair(strategy=<span class="str">"auto"</span>, verbose=<span class="kw">False</span>)
+repaired, report = engine.fit_transform(df)
+
+<span class="kw">for</span> action <span class="kw">in</span> report.actions:
+    <span class="fn">print</span>(<span class="kw">f</span><span class="str">"[{action.column}] {action.issue_type}: {action.rows_affected} rows"</span>)</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- DataContract docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#8b5cf6">
+            <div class="doc-block-icon">📋</div>
+            <div>
+              <h3>DataContract</h3>
+              <p>datamend.core.contract</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <h4>Class: DataContract</h4>
+            <div class="api-signature">
+              <code>DataContract(null_threshold=0.05)</code>
+            </div>
+            <div class="param-table">
+              <div class="param-row">
+                <span class="param-name">null_threshold</span>
+                <span class="param-type">float</span>
+                <span class="param-desc">Maximum fraction of null values allowed per column (0–1). Default 0.05 (5%).</span>
+              </div>
+            </div>
+            <h4>Methods</h4>
+            <div class="method-list">
+              <div class="method-item">
+                <code class="method-sig">fit(df) → self</code>
+                <p>Learn statistical fingerprint from training data. Stores ColumnSpec per column.</p>
+              </div>
+              <div class="method-item">
+                <code class="method-sig">validate(df, raise_on_failure=False) → ContractReport</code>
+                <p>Run 7 validation checks. Returns report with violations list and passed flag.</p>
+              </div>
+              <div class="method-item">
+                <code class="method-sig">save(path) / load(path)</code>
+                <p>Persist contract as JSON for version control and reproducible validation.</p>
+              </div>
+            </div>
+            <h4>Validation Checks (in order)</h4>
+            <div class="checks-list">
+              <div class="check-item critical"><span class="check-badge">CRITICAL</span>Missing required columns</div>
+              <div class="check-item high"><span class="check-badge">HIGH</span>Null rate exceeds threshold</div>
+              <div class="check-item high"><span class="check-badge">HIGH</span>dtype mismatch with expected type</div>
+              <div class="check-item medium"><span class="check-badge">MEDIUM</span>Numeric values outside training range</div>
+              <div class="check-item medium"><span class="check-badge">MEDIUM</span>KS-test distribution shift (p &lt; 0.01)</div>
+              <div class="check-item low"><span class="check-badge">LOW</span>Cardinality change &gt; 50% from training</div>
+              <div class="check-item low"><span class="check-badge">LOW</span>Extra unexpected columns found</div>
+            </div>
+            <div class="doc-example">
+              <div class="doc-example-label">Example</div>
+              <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> DataContract
+
+contract = DataContract(null_threshold=<span class="num">0.02</span>)
+contract.fit(train_df)
+contract.save(<span class="str">"contracts/prod_v1.json"</span>)
+
+report = contract.validate(prod_df)
+<span class="kw">if not</span> report.passed:
+    <span class="kw">for</span> v <span class="kw">in</span> report.violations:
+        <span class="fn">print</span>(<span class="kw">f</span><span class="str">"[{v.severity}] {v.column}: {v.message}"</span>)</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- DriftRadar docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#06b6d4">
+            <div class="doc-block-icon">📡</div>
+            <div>
+              <h3>DriftRadar</h3>
+              <p>datamend.core.drift</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <h4>Class: DriftRadar</h4>
+            <div class="api-signature">
+              <code>DriftRadar(psi_buckets=10, alpha=0.05, verbose=True)</code>
+            </div>
+            <div class="param-table">
+              <div class="param-row">
+                <span class="param-name">psi_buckets</span>
+                <span class="param-type">int</span>
+                <span class="param-desc">Number of percentile bins for PSI computation. Higher = finer-grained. Default 10.</span>
+              </div>
+              <div class="param-row">
+                <span class="param-name">alpha</span>
+                <span class="param-type">float</span>
+                <span class="param-desc">Significance level for KS and chi-square p-value threshold. Default 0.05.</span>
+              </div>
+            </div>
+            <h4>Statistical Tests Explained</h4>
+            <div class="algo-cards">
+              <div class="algo-card">
+                <span class="algo-name">PSI</span>
+                <p>Population Stability Index. Compares bin frequencies between train and prod. PSI &gt; 0.25 = significant drift. Used in credit scoring models for decades.</p>
+                <div class="algo-formula"><code>PSI = Σ(A% - E%) × ln(A% / E%)</code></div>
+              </div>
+              <div class="algo-card">
+                <span class="algo-name">KS Test</span>
+                <p>Kolmogorov-Smirnov test. Measures maximum distance between empirical CDFs. Non-parametric — no distribution assumption needed.</p>
+                <div class="algo-formula"><code>D = max|F_train(x) - F_prod(x)|</code></div>
+              </div>
+              <div class="algo-card">
+                <span class="algo-name">Chi-Square</span>
+                <p>For categorical columns. Compares observed vs expected category frequencies. Flags columns where the category mix has changed significantly.</p>
+                <div class="algo-formula"><code>χ² = Σ (O - E)² / E</code></div>
+              </div>
+              <div class="algo-card">
+                <span class="algo-name">JSD</span>
+                <p>Jensen-Shannon Divergence. Symmetric, bounded (0–1), works on both continuous and categorical columns. Complementary to KS and PSI.</p>
+                <div class="algo-formula"><code>JSD = ½KL(P||M) + ½KL(Q||M)</code></div>
+              </div>
+            </div>
+            <h4>ColumnDriftResult fields</h4>
+            <div class="fields-table">
+              <div class="field-row"><code>psi</code><span>float — Population Stability Index</span></div>
+              <div class="field-row"><code>ks_stat / ks_pvalue</code><span>float — KS statistic and p-value</span></div>
+              <div class="field-row"><code>chi2_stat / chi2_pvalue</code><span>float — chi-square stat and p-value</span></div>
+              <div class="field-row"><code>jsd</code><span>float — Jensen-Shannon Divergence (0–1)</span></div>
+              <div class="field-row"><code>drift_score</code><span>float — combined weighted score (0–100)</span></div>
+              <div class="field-row"><code>drifted</code><span>bool — True if any test flags drift</span></div>
+              <div class="field-row"><code>severity</code><span>str — "none" | "low" | "medium" | "high" | "critical"</span></div>
+            </div>
+            <div class="doc-example">
+              <div class="doc-example-label">Example</div>
+              <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> DriftRadar
+
+radar = DriftRadar(psi_buckets=<span class="num">20</span>, alpha=<span class="num">0.01</span>)
+report = radar.detect(train_df, prod_df)
+
+<span class="kw">for</span> col, r <span class="kw">in</span> report.column_results.items():
+    <span class="kw">if</span> r.drifted:
+        <span class="fn">print</span>(<span class="kw">f</span><span class="str">"{col}: PSI={r.psi:.3f} severity={r.severity}"</span>)</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- FailureTrace docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#10b981">
+            <div class="doc-block-icon">🔬</div>
+            <div>
+              <h3>FailureTrace</h3>
+              <p>datamend.core.trace</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <h4>Class: FailureTrace</h4>
+            <div class="api-signature">
+              <code>FailureTrace(top_k=10, verbose=True)</code>
+            </div>
+            <div class="param-table">
+              <div class="param-row">
+                <span class="param-name">top_k</span>
+                <span class="param-type">int</span>
+                <span class="param-desc">Number of most suspicious rows to include in TraceReport. Default 10.</span>
+              </div>
+            </div>
+            <h4>Suspicion Score Formula</h4>
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-coef">suspicion</span>
+                <span class="formula-eq">=</span>
+                <span class="formula-term">0.50 × <em>dq_suspicion</em></span>
+                <span class="formula-op">+</span>
+                <span class="formula-term">0.30 × <em>weighted_anomaly</em></span>
+                <span class="formula-op">+</span>
+                <span class="formula-term">0.20 × <em>model_suspicion</em></span>
+              </div>
+              <div class="formula-note">
+                dq_suspicion = 1 - (data quality score per row, penalises nulls/outliers/encoding issues)<br/>
+                weighted_anomaly = feature-importance-weighted column anomaly rate<br/>
+                model_suspicion = 1 - model confidence (1 - max predict_proba for classifiers)
+              </div>
+            </div>
+            <h4>RowFailure fields</h4>
+            <div class="fields-table">
+              <div class="field-row"><code>row_index</code><span>int — index in the original DataFrame</span></div>
+              <div class="field-row"><code>suspicion_score</code><span>float — composite suspicion (0–1, higher = more suspicious)</span></div>
+              <div class="field-row"><code>top_columns</code><span>List[str] — columns most responsible for this row's failure</span></div>
+              <div class="field-row"><code>data_quality_score</code><span>float — per-row DQ score (0–1, lower = worse quality)</span></div>
+              <div class="field-row"><code>model_confidence</code><span>float — model confidence for this row (0–1)</span></div>
+              <div class="field-row"><code>reason</code><span>str — human-readable explanation of why this row is suspicious</span></div>
+            </div>
+            <div class="doc-example">
+              <div class="doc-example-label">Example</div>
+              <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> FailureTrace
+
+tracer = FailureTrace(top_k=<span class="num">20</span>)
+report = tracer.trace(model, df, predictions, ground_truth=y_true)
+
+<span class="kw">for</span> row <span class="kw">in</span> report.suspicious_rows:
+    <span class="fn">print</span>(<span class="kw">f</span><span class="str">"Row {row.row_index}: suspicion={row.suspicion_score:.3f}"</span>)
+    <span class="fn">print</span>(<span class="kw">f</span><span class="str">"  Columns: {row.top_columns[:3]}"</span>)
+    <span class="fn">print</span>(<span class="kw">f</span><span class="str">"  Reason: {row.reason}"</span>)</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- MendPipeline docs -->
+        <div class="doc-block doc-block-full">
+          <div class="doc-block-header" style="--accent:#6366f1">
+            <div class="doc-block-icon">🚀</div>
+            <div>
+              <h3>MendPipeline</h3>
+              <p>datamend.pipeline — All four pillars unified</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <div class="pipeline-params-grid">
+              <div>
+                <h4>Constructor Parameters</h4>
+                <div class="param-table">
+                  <div class="param-row"><span class="param-name">repair_strategy</span><span class="param-type">str</span><span class="param-desc">"auto" | "mean" | "median" | "mode"</span></div>
+                  <div class="param-row"><span class="param-name">null_threshold</span><span class="param-type">float</span><span class="param-desc">Contract max null rate (0–1). Default 0.05</span></div>
+                  <div class="param-row"><span class="param-name">drift_alpha</span><span class="param-type">float</span><span class="param-desc">KS/chi² significance level. Default 0.05</span></div>
+                  <div class="param-row"><span class="param-name">psi_buckets</span><span class="param-type">int</span><span class="param-desc">PSI percentile bins. Default 10</span></div>
+                  <div class="param-row"><span class="param-name">top_k_trace</span><span class="param-type">int</span><span class="param-desc">Suspicious rows to surface. Default 10</span></div>
+                  <div class="param-row"><span class="param-name">enable_repair</span><span class="param-type">bool</span><span class="param-desc">Run AutoRepair pillar. Default True</span></div>
+                  <div class="param-row"><span class="param-name">enable_contract</span><span class="param-type">bool</span><span class="param-desc">Run DataContract pillar. Default True</span></div>
+                  <div class="param-row"><span class="param-name">enable_drift</span><span class="param-type">bool</span><span class="param-desc">Run DriftRadar pillar. Default True</span></div>
+                  <div class="param-row"><span class="param-name">enable_trace</span><span class="param-type">bool</span><span class="param-desc">Run FailureTrace pillar. Default True</span></div>
+                  <div class="param-row"><span class="param-name">fast_mode</span><span class="param-type">bool</span><span class="param-desc">Sampling for large datasets. Default False</span></div>
+                  <div class="param-row"><span class="param-name">verbose</span><span class="param-type">bool</span><span class="param-desc">Print pillar summaries to stdout</span></div>
+                  <div class="param-row"><span class="param-name">plugins</span><span class="param-type">list</span><span class="param-desc">Custom BaseRepairPlugin instances</span></div>
+                </div>
+              </div>
+              <div>
+                <h4>Methods</h4>
+                <div class="method-list">
+                  <div class="method-item">
+                    <code class="method-sig">fit(train_df) → self</code>
+                    <p>Repairs training data, learns contract, stores clean reference for drift comparison.</p>
+                  </div>
+                  <div class="method-item">
+                    <code class="method-sig">transform(df, model=None, predictions=None, ground_truth=None) → PipelineResult</code>
+                    <p>Runs all enabled pillars on new data. Returns PipelineResult with everything.</p>
+                  </div>
+                  <div class="method-item">
+                    <code class="method-sig">fit_transform(train_df, prod_df=None, ...) → PipelineResult</code>
+                    <p>Convenience wrapper: fit + transform in one call. If prod_df is None, analyses train_df itself.</p>
+                  </div>
+                </div>
+                <h4>Overall MendScore Formula</h4>
+                <div class="formula-block" style="margin-top:0">
+                  <div class="formula-line flex-col">
+                    <code>score = 0.35 × repair_after</code>
+                    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.30 × contract_score</code>
+                    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.20 × (100 - drift_score)</code>
+                    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 0.15 × (100 - trace_score)</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plugin System docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#f59e0b">
+            <div class="doc-block-icon">🔌</div>
+            <div>
+              <h3>Plugin System</h3>
+              <p>datamend.plugins.base</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <p class="doc-intro">Extend datamend with custom repair logic using the plugin interface. Plugins run after the 8 built-in phases and integrate fully with MendReport and the CLI.</p>
+            <h4>Creating a Plugin</h4>
+            <div class="doc-example" style="margin-top:0">
+              <pre><code><span class="kw">from</span> datamend.plugins.base <span class="kw">import</span> BaseRepairPlugin, register_plugin
+<span class="kw">from</span> datamend.core.repair <span class="kw">import</span> RepairAction
+
+<span class="kw">@register_plugin</span>
+<span class="kw">class</span> ClipNegativePlugin(BaseRepairPlugin):
+    name = <span class="str">"clip_negative"</span>
+    description = <span class="str">"Clips negative values to 0"</span>
+
+    <span class="kw">def</span> repair(<span class="kw">self</span>, df):
+        df, actions = df.copy(), []
+        <span class="kw">for</span> col <span class="kw">in</span> df.select_dtypes(<span class="str">"number"</span>).columns:
+            mask = df[col] &lt; <span class="num">0</span>
+            count = mask.sum()
+            <span class="kw">if</span> count:
+                df.loc[mask, col] = <span class="num">0</span>
+                actions.append(RepairAction(
+                    column=col, issue_type=<span class="str">"NEGATIVE_VALUE"</span>,
+                    description=<span class="kw">f</span><span class="str">"Clipped {count} negatives to 0"</span>,
+                    rows_affected=int(count),
+                    before_sample=<span class="kw">None</span>, after_sample=<span class="kw">None</span>,
+                    strategy=<span class="str">"clip_negative"</span>,
+                ))
+        <span class="kw">return</span> df, actions
+
+<span class="comment"># Use it</span>
+repaired, report = datamend.repair(df, plugins=[ClipNegativePlugin()])</code></pre>
+            </div>
+            <h4>Auto-Discovery via Entry Points</h4>
+            <div class="doc-example">
+              <pre><code><span class="comment"># In your library's pyproject.toml:</span>
+[project.entry-points."datamend.plugins"]
+my_plugin = "my_package.plugins:MyPlugin"
+
+<span class="comment"># datamend discovers it automatically on install</span>
+<span class="kw">from</span> datamend.plugins.base <span class="kw">import</span> get_registry
+registry = get_registry()
+registry.auto_discover()
+<span class="fn">print</span>(registry.list_plugins())  <span class="comment"># includes "my_plugin"</span></code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- HTML Dashboard docs -->
+        <div class="doc-block">
+          <div class="doc-block-header" style="--accent:#ec4899">
+            <div class="doc-block-icon">🖥️</div>
+            <div>
+              <h3>HTML Dashboard</h3>
+              <p>datamend.report — MendReport</p>
+            </div>
+          </div>
+          <div class="doc-block-content">
+            <p class="doc-intro">Generate a self-contained, dark-mode HTML dashboard from any combination of pillar reports. No server. No internet. No CDN dependencies — one single .html file.</p>
+            <h4>Class: MendReport</h4>
+            <div class="api-signature">
+              <code>MendReport(repair_report=None, contract_report=None, drift_report=None, trace_report=None)</code>
+            </div>
+            <div class="method-list" style="margin-top:16px">
+              <div class="method-item">
+                <code class="method-sig">to_html(path) → str</code>
+                <p>Write single-file dashboard to disk. Returns the rendered HTML string.</p>
+              </div>
+              <div class="method-item">
+                <code class="method-sig">serve(port=8080, open_browser=True)</code>
+                <p>Spin up a local HTTP server and open the dashboard in your browser.</p>
+              </div>
+            </div>
+            <div class="doc-example">
+              <div class="doc-example-label">Example</div>
+              <pre><code><span class="kw">from</span> datamend <span class="kw">import</span> MendReport
+
+report = MendReport(
+    repair_report=repair_report,
+    contract_report=contract_report,
+    drift_report=drift_report,
+    trace_report=trace_report,
+)
+
+report.to_html(<span class="str">"dashboard.html"</span>)       <span class="comment"># save to disk</span>
+report.serve(port=<span class="num">8080</span>)               <span class="comment"># open in browser</span></code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MENDSCORE VISUALISATION ────────────────────────────────── -->
+  <section class="mendscore-section">
+    <div class="container">
+      <div class="mendscore-inner">
+        <div class="mendscore-text">
+          <span class="section-eyebrow">MendScore</span>
+          <h2>One number tells<br/>you everything</h2>
+          <p>
+            MendScore is a composite 0–100 health metric computed on every run.
+            It weights null rate, outlier rate, duplicate rate, and whitespace contamination
+            into a single actionable score you can track over time, log to MLflow/W&amp;B,
+            and set threshold alerts on.
+          </p>
+          <div class="score-formula">
+            <div class="formula-row">
+              <span class="formula-weight">40%</span>
+              <div class="formula-bar-wrap"><span class="formula-bar" style="width:100%;background:#ef4444"></span></div>
+              <span class="formula-name">Null rate penalty</span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-weight">25%</span>
+              <div class="formula-bar-wrap"><span class="formula-bar" style="width:62.5%;background:#f97316"></span></div>
+              <span class="formula-name">Outlier rate penalty</span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-weight">20%</span>
+              <div class="formula-bar-wrap"><span class="formula-bar" style="width:50%;background:#eab308"></span></div>
+              <span class="formula-name">Duplicate rate penalty</span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-weight">15%</span>
+              <div class="formula-bar-wrap"><span class="formula-bar" style="width:37.5%;background:#22c55e"></span></div>
+              <span class="formula-name">Whitespace rate penalty</span>
+            </div>
+          </div>
+          <div class="score-grade-table">
+            <div class="grade-row"><span class="grade-badge" style="background:#dcfce7;color:#15803d">95–100</span><span>Excellent — production-ready</span></div>
+            <div class="grade-row"><span class="grade-badge" style="background:#fef9c3;color:#854d0e">85–94</span><span>Good — acceptable for most models</span></div>
+            <div class="grade-row"><span class="grade-badge" style="background:#ffedd5;color:#9a3412">70–84</span><span>Fair — repair recommended</span></div>
+            <div class="grade-row"><span class="grade-badge" style="background:#fee2e2;color:#991b1b">50–69</span><span>Poor — repair required</span></div>
+            <div class="grade-row"><span class="grade-badge" style="background:#fca5a5;color:#7f1d1d">0–49</span><span>Critical — stop pipeline</span></div>
+          </div>
+        </div>
+        <div class="mendscore-visual">
+          <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3b82f6"/>
+                  <stop offset="100%" stop-color="#8b5cf6"/>
+                </linearGradient>
+              </defs>
+              <circle cx="100" cy="100" r="80" class="ring-bg"/>
+              <circle cx="100" cy="100" r="80" class="ring-fill" id="ringFill"/>
+            </svg>
+            <div class="score-center">
+              <span class="score-value" id="scoreValue">0</span>
+              <span class="score-label">/100</span>
+            </div>
+          </div>
+          <p class="score-subtitle">MendScore after repair on a sample dirty dataset</p>
+          <div class="score-comparison">
+            <div class="score-comp-row">
+              <span>Before repair</span>
+              <div class="comp-bar-wrap">
+                <div class="comp-bar comp-bar-before" style="width:54%"></div>
+              </div>
+              <span class="comp-val">54.2</span>
+            </div>
+            <div class="score-comp-row">
+              <span>After repair</span>
+              <div class="comp-bar-wrap">
+                <div class="comp-bar comp-bar-after" style="width:96.8%"></div>
+              </div>
+              <span class="comp-val">96.8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENCHMARK ─────────────────────────────────────────────── -->
+  <section class="benchmark" id="benchmark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Performance</span>
+        <h2>Fast enough for production.<br/>Thorough enough for research.</h2>
+        <p>Benchmarked on a 100,000-row × 20-column dataset · MacBook Pro M2 · Python 3.11 · average of 5 runs</p>
+      </div>
+      <div class="benchmark-table-wrap">
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th class="highlight-col">datamend</th>
+              <th>pandas (manual)</th>
+              <th>Great Expectations</th>
+              <th>Evidently</th>
+              <th>SHAP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Null detection + imputation</td>
+              <td class="highlight-col"><span class="win">0.12s</span></td>
+              <td>0.08s</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Outlier detection + IQR clip</td>
+              <td class="highlight-col"><span class="win">0.31s</span></td>
+              <td>~1.2s manual</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Duplicate removal (exact + near)</td>
+              <td class="highlight-col"><span class="win">0.09s</span></td>
+              <td>0.07s (exact only)</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Full 8-phase data repair</td>
+              <td class="highlight-col"><span class="win">0.61s</span></td>
+              <td>~4s manual setup</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Contract fit</td>
+              <td class="highlight-col"><span class="win">0.18s</span></td>
+              <td>—</td>
+              <td>~2.1s</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Contract validation</td>
+              <td class="highlight-col"><span class="win">0.11s</span></td>
+              <td>—</td>
+              <td>~0.9s</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Drift detection (10 columns)</td>
+              <td class="highlight-col"><span class="win">0.29s</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>~0.8s</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Failure trace (RandomForest)</td>
+              <td class="highlight-col"><span class="win">1.14s</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>~8.2s</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>Full pipeline (all 4 pillars)</strong></td>
+              <td class="highlight-col"><strong class="win">2.1s</strong></td>
+              <td>~7s+ combined</td>
+              <td colspan="3" style="text-align:center;color:var(--gray-400)">No equivalent — separate tools required</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="benchmark-note">
+        datamend's FailureTrace is <strong>7× faster than SHAP</strong> on the same dataset because it uses surrogate importances rather than marginal Shapley value computation. Benchmarks are indicative and vary by hardware, dataset shape, and Python version.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPARISON ────────────────────────────────────────────── -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Comparison</span>
+        <h2>Why not just use the existing tools?</h2>
+        <p>Each alternative solves one slice of the problem. datamend solves all four — in one install, one API, one report. No stitching five libraries together.</p>
+      </div>
+      <div class="comparison-grid">
+        <div class="vs-card">
+          <div class="vs-header"><span class="vs-tool">pandas</span><span class="vs-vs">vs</span><span class="vs-dm">datamend</span></div>
+          <p>pandas gives you the primitives. datamend gives you the automation. Writing manual null + outlier + duplicate detection code takes 200+ lines. datamend does it in one call, with a full audit trail of every fix and a composite health score.</p>
+          <div class="vs-wins">
+            <span class="win-tag">Auto-selects imputation strategy</span>
+            <span class="win-tag">MendScore metric</span>
+            <span class="win-tag">Full audit trail</span>
+          </div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-header"><span class="vs-tool">Great Expectations</span><span class="vs-vs">vs</span><span class="vs-dm">datamend</span></div>
+          <p>Great Expectations requires you to define every expectation manually. DataContract learns from your training data automatically — and validates against it in 2 lines of code, not 20. Includes KS-test distribution validation that GX doesn't offer out of the box.</p>
+          <div class="vs-wins">
+            <span class="win-tag">Auto-learned contract</span>
+            <span class="win-tag">KS distribution check</span>
+            <span class="win-tag">Integrated repair</span>
+          </div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-header"><span class="vs-tool">Evidently</span><span class="vs-vs">vs</span><span class="vs-dm">datamend</span></div>
+          <p>Evidently is a great reporting tool but it doesn't repair data, enforce contracts, or trace failures. DriftRadar runs PSI + KS + chi² + JSD simultaneously — including JSD which Evidently doesn't offer — and combines them into a single severity score.</p>
+          <div class="vs-wins">
+            <span class="win-tag">JSD test built-in</span>
+            <span class="win-tag">Combined drift score</span>
+            <span class="win-tag">Offline single-file dashboard</span>
+          </div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-header"><span class="vs-tool">SHAP</span><span class="vs-vs">vs</span><span class="vs-dm">datamend</span></div>
+          <p>SHAP explains feature importance globally. FailureTrace identifies the specific rows most likely to fail and fuses data quality signals with model confidence — running 7× faster by using surrogate importances instead of marginal Shapley value computation.</p>
+          <div class="vs-wins">
+            <span class="win-tag">Row-level suspicion score</span>
+            <span class="win-tag">DQ × model signal fusion</span>
+            <span class="win-tag">7× faster attribution</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature matrix -->
+      <div class="feature-matrix">
+        <h3>Feature Matrix</h3>
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="dm-col">datamend</th>
+                <th>pandas</th>
+                <th>GX</th>
+                <th>Evidently</th>
+                <th>SHAP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Auto null imputation</td><td class="dm-col">✅</td><td>⚠️ manual</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Outlier repair</td><td class="dm-col">✅</td><td>⚠️ manual</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Encoding corruption fix</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Auto-learned contracts</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Statistical contract (KS)</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>PSI drift detection</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
+              <tr><td>JSD drift detection</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Row-level suspicion scores</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>MendScore composite metric</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Offline HTML dashboard</td><td class="dm-col">✅</td><td>❌</td><td>⚠️ server</td><td>✅</td><td>❌</td></tr>
+              <tr><td>MLflow / W&amp;B integration</td><td class="dm-col">✅</td><td>❌</td><td>❌</td><td>⚠️</td><td>❌</td></tr>
+              <tr><td>Plugin system</td><td class="dm-col">✅</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+              <tr><td>Lines of code to get started</td><td class="dm-col"><strong>1</strong></td><td>50+</td><td>20+</td><td>10+</td><td>10+</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
+  <section class="integrations" id="integrations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Integrations</span>
+        <h2>Fits into your existing stack</h2>
+        <p>datamend integrates with the tools data scientists already use — experiment trackers, version control systems, and CI/CD pipelines.</p>
+      </div>
+      <div class="integrations-grid">
+        <div class="integration-card">
+          <div class="integration-logo mlflow-logo">MLflow</div>
+          <h4>MLflow</h4>
+          <p>Log MendScore, repair counts, drift metrics, and full pipeline reports as JSON artifacts in any MLflow run.</p>
+          <pre><code>from datamend.integrations.mlflow import log_pipeline_result
+with mlflow.start_run():
+    log_pipeline_result(result)</code></pre>
+        </div>
+        <div class="integration-card">
+          <div class="integration-logo wandb-logo">W&amp;B</div>
+          <h4>Weights &amp; Biases</h4>
+          <p>Stream data quality metrics alongside model performance to your W&amp;B dashboard in real time.</p>
+          <pre><code>from datamend.integrations.wandb import log_repair
+wandb.init(project="my-ml-project")
+log_repair(repair_report)</code></pre>
+        </div>
+        <div class="integration-card">
+          <div class="integration-logo dvc-logo">DVC</div>
+          <h4>DVC</h4>
+          <p>Save repair and drift metrics as DVC-tracked JSON files alongside your data pipeline for reproducibility.</p>
+          <pre><code>from datamend.integrations.dvc import save_repair_metrics
+save_repair_metrics(report, path="metrics/repair.json")</code></pre>
+        </div>
+        <div class="integration-card">
+          <div class="integration-logo sklearn-logo">sklearn</div>
+          <h4>scikit-learn</h4>
+          <p>Native feature importance extraction from any sklearn estimator with .feature_importances_ or .coef_ attributes.</p>
+          <pre><code>from sklearn.ensemble import RandomForestClassifier
+report = datamend.trace(rf_model, df, preds)</code></pre>
+        </div>
+        <div class="integration-card">
+          <div class="integration-logo xgb-logo">XGBoost</div>
+          <h4>XGBoost</h4>
+          <p>Plug in XGBClassifier or XGBRegressor. datamend extracts feature importances natively — no wrappers needed.</p>
+          <pre><code>from xgboost import XGBRegressor
+report = datamend.trace(xgb_model, df, preds)</code></pre>
+        </div>
+        <div class="integration-card">
+          <div class="integration-logo torch-logo">PyTorch</div>
+          <h4>PyTorch</h4>
+          <p>Works with any nn.Module. Surrogate DecisionTreeRegressor used for attribution when native importances are unavailable.</p>
+          <pre><code>import torch.nn as nn
+report = datamend.trace(my_net, df, preds)</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-bg">
+          <div class="cta-blob cta-blob-1"></div>
+          <div class="cta-blob cta-blob-2"></div>
+        </div>
+        <div class="cta-content">
+          <h2>Ready to fix your data pipeline?</h2>
+          <p>Install datamend in 10 seconds. Get your first MendScore in 30 seconds. Save 10+ hours every week.</p>
+          <div class="cta-install">
+            <span class="install-prompt">$</span>
+            <span>pip install datamend</span>
+          </div>
+          <div class="cta-btns">
+            <a href="https://pypi.org/project/datamend/" target="_blank" class="btn btn-white btn-lg">
+              Install from PyPI
+            </a>
+            <a href="https://github.com/sohaibdevv/datamend.py" target="_blank" class="btn btn-outline-white btn-lg">
+              View on GitHub
+            </a>
+            <a href="#docs" class="btn btn-outline-white btn-lg">
+              Read the Docs
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <span class="logo-icon">⬡</span>
+            <span class="footer-name">datamend</span>
+          </div>
+          <p class="footer-tagline">The unified data quality library for production ML.<br/>Fix dirty data. Enforce contracts. Detect drift. Trace failures.</p>
+          <div class="footer-badges">
+            <span class="footer-badge">Python ≥ 3.9</span>
+            <span class="footer-badge">MIT License</span>
+            <span class="footer-badge">PyPI v0.1.0</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Library</h5>
+            <a href="https://pypi.org/project/datamend/" target="_blank">PyPI Package</a>
+            <a href="https://github.com/sohaibdevv/datamend.py" target="_blank">GitHub</a>
+            <a href="https://github.com/sohaibdevv/datamend.py/blob/main/CHANGELOG.md" target="_blank">Changelog</a>
+            <a href="https://github.com/sohaibdevv/datamend.py/issues" target="_blank">Bug Reports</a>
+          </div>
+          <div class="footer-col">
+            <h5>Docs</h5>
+            <a href="#docs">API Reference</a>
+            <a href="https://sohaibdevv.github.io/datamend.py" target="_blank">Full Docs Site</a>
+            <a href="https://github.com/sohaibdevv/datamend.py#readme" target="_blank">README</a>
+          </div>
+          <div class="footer-col">
+            <h5>Features</h5>
+            <a href="#pillars">AutoRepair</a>
+            <a href="#pillars">DataContract</a>
+            <a href="#pillars">DriftRadar</a>
+            <a href="#pillars">FailureTrace</a>
+            <a href="#integrations">Integrations</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built by <a href="https://github.com/sohaibdevv" target="_blank">sohaib</a> · Open source under the MIT License</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

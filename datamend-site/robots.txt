@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sohaibdevv.github.io/datamend-site/sitemap.xml

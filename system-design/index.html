@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SystemGraph — Visual system design tool. Drag and drop components, draw connections, load templates, and export beautiful architecture diagrams. Free, open source, runs in the browser." />
+  <title>SystemGraph — Visual System Architecture Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon"><i class="fa fa-diagram-project"></i></div>
+    System<span>Graph</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="designer.html" class="btn-nav">Open Designer →</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content fade-up">
+    <div class="hero-badge">
+      <i class="fa fa-diagram-project"></i>
+      Visual Architecture Tool
+    </div>
+    <h1>
+      Design Systems.<br />
+      <span class="accent-text">Think Visually.</span>
+    </h1>
+    <p>
+      The open-source system design canvas for engineers and architects.
+      Drag components, draw connections, load battle-tested templates,
+      and export beautiful diagrams — all in your browser, zero setup.
+    </p>
+    <div class="hero-actions">
+      <a href="designer.html" class="btn-primary">
+        <i class="fa fa-pencil-ruler"></i>
+        Start Designing
+      </a>
+      <a href="#templates" class="btn-secondary">
+        <i class="fa fa-layer-group"></i>
+        Browse Templates
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>30+</strong>
+        <span>Components</span>
+      </div>
+      <div class="hero-stat">
+        <strong>7</strong>
+        <span>Templates</span>
+      </div>
+      <div class="hero-stat">
+        <strong>6</strong>
+        <span>Categories</span>
+      </div>
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>Free & Open</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero canvas preview -->
+  <div class="hero-visual fade-up delay-2">
+    <div class="hero-canvas-wrapper">
+      <div class="hero-canvas-header">
+        <div class="hero-dot"></div>
+        <div class="hero-dot"></div>
+        <div class="hero-dot"></div>
+        <span class="hero-canvas-title">Web App Architecture</span>
+      </div>
+      <canvas id="heroCanvas"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+  <div class="features-header fade-up">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything you need to design systems</h2>
+    <p class="section-sub">
+      A powerful, lightweight canvas that meets you where you think — no accounts,
+      no subscriptions, no friction.
+    </p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card fade-up delay-1">
+      <div class="feature-icon"><i class="fa fa-hand-pointer"></i></div>
+      <h3>Click-to-Add Components</h3>
+      <p>Pick from 30+ pre-built system components across 6 categories — clients, networking, compute, storage, messaging, and infrastructure.</p>
+    </div>
+    <div class="feature-card fade-up delay-2">
+      <div class="feature-icon"><i class="fa fa-link"></i></div>
+      <h3>Visual Connections</h3>
+      <p>Switch to Connect mode and click any two nodes to draw a labeled edge. Add HTTP, gRPC, WebSocket, SQL — any protocol you need.</p>
+    </div>
+    <div class="feature-card fade-up delay-3">
+      <div class="feature-icon"><i class="fa fa-layer-group"></i></div>
+      <h3>Architecture Templates</h3>
+      <p>Bootstrap from 7 real-world patterns: Web App, Microservices, Real-Time Chat, Video Streaming, Ride Sharing, Search Engine, and more.</p>
+    </div>
+    <div class="feature-card fade-up delay-1">
+      <div class="feature-icon"><i class="fa fa-rotate-left"></i></div>
+      <h3>Full Undo / Redo</h3>
+      <p>60-level deep undo stack keeps your work safe. Keyboard shortcuts (Ctrl+Z / Ctrl+Y) make iteration effortless.</p>
+    </div>
+    <div class="feature-card fade-up delay-2">
+      <div class="feature-icon"><i class="fa fa-image"></i></div>
+      <h3>Export as PNG or JSON</h3>
+      <p>Export your design as a crisp 2× PNG for presentations or as JSON to share, version-control, or re-import later.</p>
+    </div>
+    <div class="feature-card fade-up delay-3">
+      <div class="feature-icon"><i class="fa fa-floppy-disk"></i></div>
+      <h3>Auto-Save to Browser</h3>
+      <p>Your work is saved to localStorage as you type. Refresh, close, reopen — your design is always there.</p>
+    </div>
+    <div class="feature-card fade-up delay-1">
+      <div class="feature-icon"><i class="fa fa-sliders"></i></div>
+      <h3>Properties Panel</h3>
+      <p>Click any node or edge to edit its label, color, shape, line style, and notes in the live properties panel.</p>
+    </div>
+    <div class="feature-card fade-up delay-2">
+      <div class="feature-icon"><i class="fa fa-keyboard"></i></div>
+      <h3>Keyboard-First Workflow</h3>
+      <p>V to select, C to connect, Del to delete, F to fit, Ctrl+S to save — every action has a shortcut for power users.</p>
+    </div>
+    <div class="feature-card fade-up delay-3">
+      <div class="feature-icon"><i class="fa fa-code"></i></div>
+      <h3>100% Client-Side</h3>
+      <p>No backend, no account, no data leaves your browser. Powered by Cytoscape.js — the best open-source graph library.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPONENTS SHOWCASE ===== -->
+<section class="components-section" id="components">
+  <div class="components-header fade-up">
+    <div>
+      <div class="section-label">Component Library</div>
+      <h2 class="section-title">30+ building blocks, 6 categories</h2>
+    </div>
+    <a href="designer.html" class="btn-secondary">
+      <i class="fa fa-plus"></i> Add to canvas
+    </a>
+  </div>
+  <div class="components-scroll fade-up" id="compShowcase"></div>
+</section>
+
+<!-- ===== TEMPLATES ===== -->
+<section class="templates" id="templates">
+  <div class="templates-header fade-up">
+    <div class="section-label">Templates</div>
+    <h2 class="section-title">Start from a real-world architecture</h2>
+    <p class="section-sub">
+      Every template is pre-wired with industry-standard components and connections.
+      Load one in a click, then customize to your needs.
+    </p>
+  </div>
+  <div class="templates-grid fade-up" id="templatesShowcase"></div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-it-works" id="how-it-works">
+  <div class="fade-up">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From idea to diagram in minutes</h2>
+  </div>
+  <div class="steps">
+    <div class="step fade-up delay-1">
+      <div class="step-num">1</div>
+      <h3>Pick a Starting Point</h3>
+      <p>Start with a blank canvas or choose a template that matches your architecture style.</p>
+    </div>
+    <div class="step fade-up delay-2">
+      <div class="step-num">2</div>
+      <h3>Add Components</h3>
+      <p>Click any component from the sidebar library to add it to the canvas. Every layer covered.</p>
+    </div>
+    <div class="step fade-up delay-3">
+      <div class="step-num">3</div>
+      <h3>Draw Connections</h3>
+      <p>Switch to Connect mode, click source then target. Label each edge with the protocol or data flow.</p>
+    </div>
+    <div class="step fade-up delay-4">
+      <div class="step-num">4</div>
+      <h3>Export &amp; Share</h3>
+      <p>Export as a 2× PNG for presentations or JSON for version control. Your work, your format.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KEYBOARD SHORTCUTS ===== -->
+<section style="background:var(--bg-secondary); padding:70px 5vw;">
+  <div class="fade-up">
+    <div class="section-label">Shortcuts</div>
+    <h2 class="section-title">Power-user keyboard shortcuts</h2>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; margin-top:2.5rem;" class="fade-up">
+    <div id="shortcutsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="section-label">Get Started</div>
+  <h2 class="section-title">Ready to design?</h2>
+  <p class="section-sub">Open the canvas and start building your architecture. No signup. No install. Just design.</p>
+  <div class="cta-actions">
+    <a href="designer.html" class="btn-primary">
+      <i class="fa fa-pencil-ruler"></i>
+      Open Designer
+    </a>
+    <a href="https://github.com/sohaibdevv/system-design" target="_blank" class="btn-cta-outline">
+      <i class="fa-brands fa-github"></i>
+      View on GitHub
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="font-size:1rem">
+        <div class="nav-logo-icon"><i class="fa fa-diagram-project"></i></div>
+        System<span>Graph</span>
+      </a>
+      <p>An open-source visual system design tool for engineers, architects, and curious minds. Built with ❤️ and Cytoscape.js.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="designer.html">Designer</a></li>
+        <li><a href="#templates">Templates</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#shortcutsGrid">Shortcuts</a></li>
+        <li><a href="https://github.com/sohaibdevv/system-design/blob/main/README.md" target="_blank">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Source</h4>
+      <ul>
+        <li><a href="https://github.com/sohaibdevv/system-design" target="_blank">GitHub</a></li>
+        <li><a href="https://github.com/sohaibdevv/system-design/issues" target="_blank">Issues</a></li>
+        <li><a href="https://github.com/sohaibdevv/system-design/blob/main/LICENSE" target="_blank">License</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <strong>sohaib</strong> — Built with Cytoscape.js &amp; pure love for system design</p>
+    <div class="social-links">
+      <a href="https://github.com/sohaibdevv" target="_blank" class="social-link" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/components.js"></script>
+<script>
+/* ── Nav scroll ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ── Component Showcase ── */
+(function buildCompShowcase() {
+  const grid = document.getElementById('compShowcase');
+  CATEGORIES.forEach(cat => {
+    cat.components.forEach(comp => {
+      const el = document.createElement('a');
+      el.href = 'designer.html';
+      el.className = 'comp-chip';
+      el.style.textDecoration = 'none';
+      el.innerHTML = `
+        <div class="comp-chip-icon" style="background:${cat.color}1A; color:${cat.color}">
+          ${comp.icon}
+        </div>
+        <span>${comp.name}</span>
+      `;
+      grid.appendChild(el);
+    });
+  });
+})();
+
+/* ── Templates Showcase ── */
+(function buildTemplatesShowcase() {
+  const grid = document.getElementById('templatesShowcase');
+  const colors = ['#EBF4FF','#F0FFF0','#FFF7E6','#FFF0F0','#F0F7FF','#F5FFF5','#FFFEF5'];
+  TEMPLATES.filter(t => t.id !== 'blank').forEach((tpl, i) => {
+    const card = document.createElement('a');
+    card.href  = 'designer.html';
+    card.className = 'template-card';
+    card.style.textDecoration = 'none';
+    card.innerHTML = `
+      <div class="template-preview" style="background:${tpl.bg || colors[i % colors.length]}">
+        <span style="font-size:3rem">${tpl.icon}</span>
+      </div>
+      <div class="template-info">
+        <h3>${tpl.name}</h3>
+        <p>${tpl.desc}</p>
+        <div class="template-tags">
+          <span class="template-tag">Architecture</span>
+          <span class="template-tag">Pre-wired</span>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+})();
+
+/* ── Shortcuts ── */
+(function buildShortcuts() {
+  const shortcuts = [
+    { key:'V',        desc:'Select mode' },
+    { key:'C',        desc:'Connect mode' },
+    { key:'Del',      desc:'Delete selected' },
+    { key:'F',        desc:'Fit canvas' },
+    { key:'Esc',      desc:'Cancel / Select' },
+    { key:'Ctrl+Z',   desc:'Undo' },
+    { key:'Ctrl+Y',   desc:'Redo' },
+    { key:'Ctrl+S',   desc:'Save design' },
+    { key:'Ctrl+E',   desc:'Export PNG' },
+    { key:'Scroll',   desc:'Zoom in / out' },
+  ];
+  const grid = document.getElementById('shortcutsGrid');
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem';
+  shortcuts.forEach(s => {
+    const el = document.createElement('div');
+    el.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border:1px solid var(--border-light);border-radius:8px;padding:10px 14px;';
+    el.innerHTML = `
+      <span style="font-size:0.82rem;color:var(--text-secondary);font-weight:500">${s.desc}</span>
+      <kbd style="padding:3px 9px;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:5px;font-size:0.72rem;font-family:inherit;font-weight:700;color:var(--text-primary)">${s.key}</kbd>
+    `;
+    grid.appendChild(el);
+  });
+})();
+
+/* ── Hero Canvas Animation ── */
+(function heroAnim() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    const w = canvas.offsetWidth;
+    const h = canvas.offsetHeight;
+    canvas.width  = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width  = w + 'px';
+    canvas.style.height = h + 'px';
+  }
+  resize();
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const W = canvas.offsetWidth;
+  const H = canvas.offsetHeight;
+
+  // Node definitions for the preview
+  const nodes = [
+    { id:0, label:'Browser',      icon:'🌐', x:50,  y:130, color:'#4A7FA5', progress:0 },
+    { id:1, label:'Load Balancer',icon:'⚖️', x:200, y:70,  color:'#7C5CBF', progress:0 },
+    { id:2, label:'API Gateway',  icon:'🚪', x:200, y:190, color:'#7C5CBF', progress:0 },
+    { id:3, label:'App Server',   icon:'⚙️', x:350, y:70,  color:'#2D9C6E', progress:0 },
+    { id:4, label:'App Server',   icon:'⚙️', x:350, y:190, color:'#2D9C6E', progress:0 },
+    { id:5, label:'Cache',        icon:'⚡', x:490, y:70,  color:'#B8621A', progress:0 },
+    { id:6, label:'Database',     icon:'🗄️', x:490, y:190, color:'#B8621A', progress:0 },
+  ];
+
+  const edges = [
+    { src:0, tgt:1, label:'HTTPS', progress:0 },
+    { src:0, tgt:2, label:'HTTPS', progress:0 },
+    { src:1, tgt:3, label:'HTTP',  progress:0 },
+    { src:2, tgt:4, label:'HTTP',  progress:0 },
+    { src:3, tgt:5, label:'Cache', progress:0 },
+    { src:3, tgt:6, label:'SQL',   progress:0 },
+    { src:4, tgt:6, label:'SQL',   progress:0 },
+  ];
+
+  let t = 0;
+  const DELAY = 18;
+
+  function lerp(a, b, p) { return a + (b - a) * p; }
+  function easeOut(t) { return 1 - Math.pow(1-t, 3); }
+
+  function drawRoundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+  }
+
+  function drawNode(node) {
+    if (node.progress <= 0) return;
+    const p  = easeOut(Math.min(node.progress, 1));
+    const nw = 80, nh = 44;
+    const nx = node.x, ny = node.y - nh/2;
+
+    ctx.save();
+    ctx.globalAlpha = p;
+    ctx.translate(nx + nw/2, node.y);
+    ctx.scale(p, p);
+    ctx.translate(-(nx + nw/2), -node.y);
+
+    // Shadow
+    ctx.shadowColor = 'rgba(0,0,0,0.08)';
+    ctx.shadowBlur  = 8;
+    ctx.shadowOffsetY = 3;
+
+    // Background
+    const col = node.color;
+    ctx.fillStyle = col + '22';
+    drawRoundRect(ctx, nx, ny, nw, nh, 8);
+    ctx.fill();
+
+    // Border
+    ctx.strokeStyle = col + 'BB';
+    ctx.lineWidth   = 1.5;
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur  = 0;
+    drawRoundRect(ctx, nx, ny, nw, nh, 8);
+    ctx.stroke();
+
+    // Icon
+    ctx.font = '16px serif';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle    = '#000';
+    ctx.fillText(node.icon, nx + 18, ny + nh/2);
+
+    // Label
+    ctx.font         = '600 9px Inter, sans-serif';
+    ctx.fillStyle    = '#2A2318';
+    ctx.textAlign    = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(node.label, nx + 30, ny + nh/2);
+
+    ctx.restore();
+  }
+
+  function drawEdge(edge) {
+    if (edge.progress <= 0) return;
+    const src = nodes[edge.src];
+    const tgt = nodes[edge.tgt];
+    if (src.progress < 0.5 || tgt.progress < 0.5) return;
+    const p = easeOut(Math.min(edge.progress, 1));
+
+    const x1 = src.x + 80, y1 = src.y;
+    const x2 = tgt.x,       y2 = tgt.y;
+
+    const ex = lerp(x1, x2, p);
+    const ey = lerp(y1, y2, p);
+
+    ctx.save();
+    ctx.strokeStyle = '#C4B8AA';
+    ctx.lineWidth   = 1.5;
+    ctx.setLineDash([]);
+    ctx.globalAlpha = p * 0.9;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+
+    if (p >= 1) {
+      // Arrow
+      const angle = Math.atan2(y2-y1, x2-x1);
+      ctx.fillStyle = '#9E8F82';
+      ctx.beginPath();
+      ctx.translate(x2, y2);
+      ctx.rotate(angle);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-8, -4);
+      ctx.lineTo(-8, 4);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+      ctx.save();
+      // Edge label
+      const mx = (x1+x2)/2, my = (y1+y2)/2;
+      ctx.font         = '500 8px Inter, sans-serif';
+      ctx.fillStyle    = '#6B5E52';
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.globalAlpha  = p * 0.85;
+      ctx.fillText(edge.label, mx, my - 3);
+    }
+
+    ctx.restore();
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Animate nodes sequentially
+    nodes.forEach((node, i) => {
+      const start = i * DELAY;
+      if (t > start) {
+        node.progress = Math.min((t - start) / DELAY, 1);
+      }
+    });
+
+    // Animate edges after all nodes partially appear
+    const edgeStart = nodes.length * DELAY * 0.5;
+    edges.forEach((edge, i) => {
+      const start = edgeStart + i * (DELAY * 0.7);
+      if (t > start) {
+        edge.progress = Math.min((t - start) / (DELAY * 1.2), 1);
+      }
+    });
+
+    // Draw
+    edges.forEach(drawEdge);
+    nodes.forEach(drawNode);
+
+    t++;
+    // Loop smoothly
+    const total = nodes.length * DELAY + edges.length * DELAY + DELAY * 4;
+    if (t > total) {
+      setTimeout(() => {
+        t = 0;
+        nodes.forEach(n => n.progress = 0);
+        edges.forEach(e => e.progress = 0);
+      }, 2500);
+    }
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ── Scroll Reveal ── */
+(function scrollReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
