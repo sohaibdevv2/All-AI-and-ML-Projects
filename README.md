@@ -1,4 +1,4 @@
-# My Work Repository
+# AI/ML Project & Assignments
 
 This is my personal work repository, where I document my journey into tech. It brings together the things I have been learning and building: course assignments, study notes, experiments, and end-to-end projects across data science, AI and machine learning, backend development, and software engineering.
 
@@ -35,3 +35,7 @@ The folders are independent projects and learning resources, not one combined ap
 ## How to Explore
 
 Browse the folders to follow my progress across different areas of technology. For details about a particular project, start with the README inside that folder; dependencies and instructions may differ from project to project.
+
+  <img width="1819" height="958" alt="Screenshot 2026-10-24 031539" src="https://github.com/user-attachments/assets/3e28b1f4-9b3e-4ea1-851d-9809ce822312" />
+<img width="1051" height="559" alt="Screenshot 2026-10-24 031603" src="https://github.com/user-attachments/assets/11aa05c6-2c59-4bef-93f0-6158b6ffce21" />
+<img width="393" height="587" alt="Screenshot 2026-10-24 031623" src="https://github.com/user-attachments/assets/75b405e7-c5ef-4072-a3e2-8eff32c416f8" />
